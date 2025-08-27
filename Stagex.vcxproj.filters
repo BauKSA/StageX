@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Archivos de origen">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Archivos de encabezado">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Archivos de recursos">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Window">
+      <UniqueIdentifier>{3a010d68-4848-4494-bfde-6e4bea250a70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Utils">
+      <UniqueIdentifier>{9ce7a8ff-342a-4b9c-9cb3-7bb8a619f591}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Player">
+      <UniqueIdentifier>{fab525da-6e79-49e1-b0d5-d4bc056f8d2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\CoreShield">
+      <UniqueIdentifier>{02023758-377d-4d04-ba84-37ed581e40c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Core">
+      <UniqueIdentifier>{9fb20a3c-cd15-49e8-8f9d-0405f625b0e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\World">
+      <UniqueIdentifier>{55679d1c-8409-456d-9782-0e68317dfed1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Bullet">
+      <UniqueIdentifier>{5aaaf89b-c1a0-4358-bf91-8debec3e4b59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\UI">
+      <UniqueIdentifier>{c69eaf0b-9d28-4cb7-87ae-8a8b7f540154}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Fire">
+      <UniqueIdentifier>{0077b257-6d36-45f0-80de-8609e3b27119}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="gameWindow.cpp">
+      <Filter>Archivos de encabezado\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>Archivos de encabezado\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="coreShield.cpp">
+      <Filter>Archivos de encabezado\CoreShield</Filter>
+    </ClCompile>
+    <ClCompile Include="core.cpp">
+      <Filter>Archivos de encabezado\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="bullet.cpp">
+      <Filter>Archivos de encabezado\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="world.cpp">
+      <Filter>Archivos de encabezado\World</Filter>
+    </ClCompile>
+    <ClCompile Include="userInterface.cpp">
+      <Filter>Archivos de encabezado\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="fire.cpp">
+      <Filter>Archivos de encabezado\Fire</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameWindow.h">
+      <Filter>Archivos de encabezado\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Archivos de encabezado\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Archivos de encabezado\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreShield.h">
+      <Filter>Archivos de encabezado\CoreShield</Filter>
+    </ClInclude>
+    <ClInclude Include="Core.h">
+      <Filter>Archivos de encabezado\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>Archivos de encabezado\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Archivos de encabezado\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface.h">
+      <Filter>Archivos de encabezado\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Fire.h">
+      <Filter>Archivos de encabezado\Fire</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

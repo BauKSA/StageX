@@ -1,0 +1,69 @@
+# =========================
+# Visual Studio
+# =========================
+
+# Archivos de Visual Studio
+.vs/
+*.vcxproj.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Carpetas de build
+Debug*/
+Release*/
+x64/
+x86/
+ipch/
+*.aps
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+
+# =========================
+# C++ / General
+# =========================
+
+# Archivos compilados
+*.obj
+*.o
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
+*.exe
+*.out
+*.pdb
+
+# =========================
+# SFML
+# =========================
+
+# Librerías externas que no querés subir (si las descargaste)
+# Si usas SFML con binarios locales, ignorá la carpeta donde las tenés
+sfml/bin/
+sfml/lib/
+
+# =========================
+# Archivos temporales / OS
+# =========================
+
+# Archivos de log y temporales
+*.log
+*.tmp
+*.temp
+*.~*
+
+# Archivos de sistema
+Thumbs.db
+.DS_Store
+
+# =========================
+# Otros
+# =========================
+*.cache
+*.ide
