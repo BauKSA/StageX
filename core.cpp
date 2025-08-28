@@ -108,6 +108,12 @@ void Core::tick(float delta_time) {
 	else if (health == 2) health_sprite = health_sprites.at(health_sprites.size() - 2);
 	else if (health == 1) health_sprite = health_sprites.at(health_sprites.size() - 3);
 
+	if (y <= -100) up = false;
+	else if (y >= 100) up = true;
+
+	if (up) y -= speed * delta_time;
+	else y += speed * delta_time;
+
 	draw_health();
 }
 

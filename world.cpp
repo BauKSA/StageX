@@ -1,5 +1,23 @@
 #include "World.h"
 
+void World::initialize_sound() {
+	if (!player_shoot_buffer.loadFromFile("./src/sounds/ship-shoot.wav")) {
+		const std::string error = "Can't initialize sound in ./src/sounds/ship-shoot.wav";
+		std::cerr << "Error initializing world: " << error << std::endl;
+		GameWindow::window().close();
+	}
+
+	player_shoot_sound.setBuffer(player_shoot_buffer);
+
+	if (!damage_buffer.loadFromFile("./src/sounds/damage.wav")) {
+		const std::string error = "Can't initialize sound in ./src/sounds/damage.wav";
+		std::cerr << "Error initializing world: " << error << std::endl;
+		GameWindow::window().close();
+	}
+
+	damage_sound.setBuffer(damage_buffer);
+}
+
 void World::event_handler() {
 	if (!player) return;
 	if (refreshing) return;
@@ -8,12 +26,13 @@ void World::event_handler() {
 		sf::Event e = events.front();
 		events.pop();
 
-		if (e.type == sf::Event::KeyPressed) {
+		if (e.type == sf::Event::KeyReleased) {
 			if (e.key.code == sf::Keyboard::K) {
 				if (!end) return player_shoot();
 
 				if (player->is_ready()) {
 					player->reset();
+					core->reset_speed();
 					points = 0;
 					lvl = 0;
 					end = false;
@@ -22,11 +41,27 @@ void World::event_handler() {
 			else if (e.key.code == sf::Keyboard::Escape) {
 				GameWindow::window().close();
 			}
+		}else if(e.type == sf::Event::JoystickButtonReleased) {
+			if (e.joystickButton.button == 0) {
+				if (!end) return player_shoot();
+				if (player->is_ready()) {
+					player->reset();
+					core->reset_speed();
+					points = 0;
+					lvl = 0;
+					end = false;
+				}
+			}
+			else if (e.joystickButton.button == 7) {
+				GameWindow::window().close();
+			}
 		}
 	}
 }
 
 void World::player_shoot() {
+	player_shoot_sound.play();
+
 	if (!first_shoot) first_shoot = true;
 	
 	std::shared_ptr<Bullet> bullet = std::make_shared<Bullet>(player->get_x() + 10, player->get_y() + 14);
@@ -72,6 +107,10 @@ void World::tick(float delta_time) {
 void World::reset() {
 	if (core) core->reset();
 	if (shield) shield->reset();
+	if (player) player->clear_events();
+
+	while (!events.empty()) events.pop();
+
 	refreshing = false;
 	refreshing_time = 0;
 }
@@ -84,7 +123,7 @@ void World::refresh() {
 	lvl++;
 	points += 4;
 
-	if (fire_time > 0.1) fire_time -= 0.15f;
+	if (fire_time > 0.1) fire_time -= 0.25f;
 	if (fire_time == 0) fire_time = 0.1;
 }
 
@@ -142,6 +181,7 @@ void World::check_shield() {
 		if (x >= shield->get_x() - 100) {
 			bullets.at(i)->destroy();
 			shield->damage();
+			damage_sound.play();
 			points++;
 		}
 	}
@@ -163,6 +203,7 @@ void World::check_core() {
 			if (y + 8 >= core->get_y() + 152 && y <= core->get_y() + 208) {
 				bullets.at(i)->destroy();
 				core->damage();
+				damage_sound.play();
 				points += 2;
 			}
 			else {
@@ -182,16 +223,13 @@ void World::fire() {
 	int max = 296;
 
 	std::uniform_int_distribution<> prob(1, 100);
-	std::uniform_int_distribution<> range1(116, 180);
-	std::uniform_int_distribution<> range2(0, 116);
-	std::uniform_int_distribution<> range3(180, 296);
+	std::uniform_int_distribution<> range(0, 296);
 
 	int y_pos;
 	int p = prob(gen);
 
-	if (p <= 70) y_pos = range1(gen);
-	else if (p <= 85) y_pos = range2(gen);
-	else y_pos = range3(gen);
+	if (p < 40) y_pos = player->get_y() - 16;
+	else y_pos = range(gen);
 
 	std::uniform_int_distribution<> distrib(min, max);
 

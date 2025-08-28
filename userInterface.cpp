@@ -2,23 +2,42 @@
 
 void UserInterface::initialize() {
 	sprite = std::make_shared<Sprite>();
+	keyboard_ui = std::make_shared<Sprite>();
+	joystick_ui = std::make_shared<Sprite>();
+
 	font = std::make_shared<Sprite>();
 
-	if (!sprite->texture.loadFromFile("./src/sprites/ui.png")) {
+	if (!keyboard_ui->texture.loadFromFile("./src/sprites/ui.png")) {
 		const std::string error = "Can't initialize sprite in ./src/sprites/ui.png";
 		std::cerr << "Error initializing UI: " << error << std::endl;
 		GameWindow::window().close();
 	}
 
-	sprite->frame.setTexture(sprite->texture);
-	sprite->frame.setTexture(sprite->texture);
+	keyboard_ui->frame.setTexture(keyboard_ui->texture);
+	keyboard_ui->frame.setTexture(keyboard_ui->texture);
 
-	sprite->width = sprite->texture.getSize().x;
-	sprite->height = sprite->texture.getSize().y;
+	keyboard_ui->width = keyboard_ui->texture.getSize().x;
+	keyboard_ui->height = keyboard_ui->texture.getSize().y;
 
 
-	sprite->frame.setOrigin(0, 0);
-	sprite->frame.setPosition(x, y);
+	keyboard_ui->frame.setOrigin(0, 0);
+	keyboard_ui->frame.setPosition(x, y);
+
+	if (!joystick_ui->texture.loadFromFile("./src/sprites/ui-joystick.png")) {
+		const std::string error = "Can't initialize sprite in ./src/sprites/ui-joystick.png";
+		std::cerr << "Error initializing UI: " << error << std::endl;
+		GameWindow::window().close();
+	}
+
+	joystick_ui->frame.setTexture(joystick_ui->texture);
+	joystick_ui->frame.setTexture(joystick_ui->texture);
+
+	joystick_ui->width = joystick_ui->texture.getSize().x;
+	joystick_ui->height = joystick_ui->texture.getSize().y;
+
+
+	joystick_ui->frame.setOrigin(0, 0);
+	joystick_ui->frame.setPosition(x, y);
 
 	if (!font->texture.loadFromFile("./src/sprites/numbers.png")) {
 		const std::string error = "Can't initialize sprite in ./src/sprites/numbers.png";
@@ -38,6 +57,9 @@ void UserInterface::initialize() {
 }
 
 void UserInterface::draw(int lvl, int points) {
+	if(GameWindow::joystick_connected()) sprite = joystick_ui;
+	else sprite = keyboard_ui;
+
 	GameWindow::window().draw(sprite->frame);
 	draw_dynamics(lvl, points);
 }

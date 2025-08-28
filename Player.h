@@ -3,6 +3,7 @@
 #include<iostream>
 #include<queue>
 #include<SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include<algorithm>
 #include<vector>
 #include<string>
@@ -25,6 +26,8 @@ private:
 	bool ready_to_start;
 	float frame_time;
 	float last_frame_time;
+	sf::SoundBuffer destroyed_buffer;
+	sf::Sound destroyed_sound;
 
 	void destroyed_tick(float delta_time);
 public:
@@ -40,6 +43,10 @@ public:
 	}
 
 	void initialize();
+
+	void clear_events() {
+		while (!events.empty()) events.pop();
+	}
 
 	void draw();
 	void set_movement(Directions dir, bool key_donw);
@@ -60,7 +67,10 @@ public:
 		destroyed_sprite = 0;
 	}
 
-	void destroy() { _destroyed = true; }
+	void destroy() {
+		_destroyed = true;
+		destroyed_sound.play();
+	}
 
 	float get_x()const { return x; }
 	float get_y()const { return y; }

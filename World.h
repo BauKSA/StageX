@@ -2,6 +2,7 @@
 #include<vector>
 #include<memory>
 #include<SFML/Graphics.hpp>
+#include<SFML/Audio.hpp>
 #include<queue>
 #include <random>
 #include <cmath>
@@ -23,6 +24,11 @@ private:
 	std::vector<std::shared_ptr<Fire>> fires;
 	std::unique_ptr<UserInterface> ui;
 
+	sf::SoundBuffer player_shoot_buffer;
+	sf::Sound player_shoot_sound;
+	sf::SoundBuffer damage_buffer;
+	sf::Sound damage_sound;
+
 	int points;
 	int lvl;
 	bool refreshing;
@@ -40,6 +46,8 @@ private:
 	void refresh();
 	void reset();
 	void game_over();
+
+	void initialize_sound();
 public:
 	World() {
 		ui = std::make_unique<UserInterface>();
@@ -60,6 +68,8 @@ public:
 
 		points = 0;
 		lvl = 0;
+
+		initialize_sound();
 	}
 
 	static World& instance() {

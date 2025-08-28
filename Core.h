@@ -17,11 +17,13 @@ private:
 	std::shared_ptr<Sprite> health_sprite;
 	int frames;
 	int health;
-	int x, y;
+	float x, y;
 	int current_sprite;
 	float last_frame_time;
 	float frame_time;
 	bool _destroyed;
+	bool up;
+	float speed;
 
 	void initialize();
 	void destroyed_tick(float delta_time);
@@ -30,11 +32,13 @@ public:
 		_destroyed = false;
 		frames = 4;
 		x = 450;
-		y = 0;
+		y = 0.f;
 		current_sprite = 0;
 		frame_time = 0.15f;
 		last_frame_time = 0;
 		health = 3;
+		up = true;
+		speed = 50.f;
 		initialize();
 	}
 
@@ -49,7 +53,10 @@ public:
 		current_sprite = sprites.size() - 1;
 		health_sprite = health_sprites.at(health_sprites.size() - 1);
 		_destroyed = false;
+		speed += 10.f;
 	}
+
+	void reset_speed() { speed = 50.f; }
 
 	int get_health()const { return health; }
 	float get_x()const { return x; }

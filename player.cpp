@@ -50,6 +50,14 @@ void Player::initialize() {
 		destroyed_sprites.push_back(spr);
 	}
 
+	if (!destroyed_buffer.loadFromFile("./src/sounds/ship-explosion.wav")) {
+		const std::string error = "Can't initialize sound in ./src/sounds/ship-explosion.wav";
+		std::cerr << "Error initializing player: " << error << std::endl;
+		GameWindow::window().close();
+	}
+
+	destroyed_sound.setBuffer(destroyed_buffer);
+
 	current_sprite = sprite;
 }
 
@@ -116,6 +124,42 @@ void Player::event_handler() {
 			
 			if (e.key.code == sf::Keyboard::S) {
 				set_movement(Directions::DOWN, false);
+			}
+		}
+		else if (e.type == sf::Event::JoystickMoved) {
+			float pos = e.joystickMove.position;
+			sf::Joystick::Axis axis = e.joystickMove.axis;
+
+			if (axis == sf::Joystick::PovX) {
+				if (pos > 50) set_movement(Directions::RIGHT);
+				else if (pos < -50) set_movement(Directions::LEFT);
+				else {
+					set_movement(Directions::RIGHT, false);
+					set_movement(Directions::LEFT, false);
+				}
+			}else if (axis == sf::Joystick::PovY) {
+				if (pos > 50) set_movement(Directions::UP);
+				else if (pos < -50) set_movement(Directions::DOWN);
+				else {
+					set_movement(Directions::UP, false);
+					set_movement(Directions::DOWN, false);
+				}
+			}
+			else if (axis == sf::Joystick::X) {
+				if (pos > 50) set_movement(Directions::RIGHT);
+				else if (pos < -50) set_movement(Directions::LEFT);
+				else {
+					set_movement(Directions::RIGHT, false);
+					set_movement(Directions::LEFT, false);
+				}
+			}
+			else if (axis == sf::Joystick::Y) {
+				if (pos > 50) set_movement(Directions::DOWN);
+				else if (pos < -50) set_movement(Directions::UP);
+				else {
+					set_movement(Directions::UP, false);
+					set_movement(Directions::DOWN, false);
+				}
 			}
 		}
 	}

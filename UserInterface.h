@@ -2,15 +2,16 @@
 #include<SFML/Graphics.hpp>
 #include<memory>
 #include<iostream>
+#include<string>
 
 #include "Utils.h"
 #include "GameWindow.h"
 
-//text in 284
-
 class UserInterface {
 private:
 	std::shared_ptr<Sprite> sprite;
+	std::shared_ptr<Sprite> keyboard_ui;
+	std::shared_ptr<Sprite> joystick_ui;
 	std::shared_ptr<Sprite> font;
 	int x, y;
 	
