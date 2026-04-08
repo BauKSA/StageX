@@ -2,7 +2,7 @@
 
 **StageX** es un shooter de acción arcade desarrollado íntegramente en **C++** utilizando la librería multimedia **SFML**. Este proyecto fue creado originalmente para una Game Jam (**Proof-of-Play Jam**), con el objetivo de completar un juego funcional y entretenido bajo un tiempo limitado.
 
-> [**Ver en Itch.io**](https://fox-hushen.itch.io/stagex)
+> [**Descargar en Itch.io**](https://fox-hushen.itch.io/stagex)
 
 ## 🕹️ Sobre el juego
 Es un desafío de disparos simple pero dinámico donde la precisión y los reflejos son clave. Al ser un proyecto de jam, se priorizó la jugabilidad directa y el feedback visual inmediato.
