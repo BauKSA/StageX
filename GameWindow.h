@@ -28,8 +28,7 @@ public:
 		if (!window.isOpen()) {
 			window.create(
 				desktop,
-				"Stagex",
-				sf::Style::Fullscreen
+				"Stagex"
 			);
 
 			float window_ratio = static_cast<float>(desktop.width) / desktop.height;
