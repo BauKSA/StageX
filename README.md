@@ -22,4 +22,4 @@ Si tenés configurado un entorno de C++ con SFML:
 
 1. **Cloná el repositorio:**
    ```bash
-   git clone [https://github.com/BauKSA/StageX.git](https://github.com/BauKSA/StageX.git)
+   git clone https://github.com/BauKSA/StageX.git
